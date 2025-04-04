@@ -6,7 +6,7 @@ namespace CardGameInteractive;
 public enum CardSuit
 {
     Diamonds = 1,
-    Clubs,
-    Hearts,
-    Spades
+    Clubs = 2,
+    Hearts = 3,
+    Spades = 4
 }

@@ -8,6 +8,10 @@ public class CardDeck
     /// List of cards in the deck
     /// </summary>
     private List<Card> _cardList;
+    
+    //Define card deck constant
+    private const int MAX_SUIT_COUNT = 4;
+    private const int MAX_CARD_VALUE = 13;
 
     private int _playerScore;
     
@@ -19,6 +23,9 @@ public class CardDeck
     public CardDeck()
     {
         _cardList = new List<Card>();
+        
+        //Create the cards in the deck
+        CreateCards();
     }
 
     /// <summary>
@@ -48,5 +55,20 @@ public class CardDeck
             return _houseScore;
         }
     }
-    
+    private void CreateCards()
+    {
+        //For each suit in the card deck
+        for (int iSuit = 1; iSuit <= MAX_SUIT_COUNT; iSuit++)
+        {
+            CardSuit suit = (CardSuit)iSuit;
+            //For each card value
+            for (byte value = 1; value <= MAX_SUIT_COUNT; value++)
+            {
+                //Create the card object with the given suit and value
+                Card card = new Card(value, suit);
+                //Add the card to the deck
+                _cardList.Add(card);
+            }
+        }
+    }
 }
