@@ -16,6 +16,15 @@ public class CardDeck
     private int _playerScore;
     
     private int _houseScore;
+    /// <summary>
+    /// The randomizer for the card deck shuffiling
+    /// </summary>
+    private static Random s_randomizer;
+
+    static CardDeck()
+    {
+        s_randomizer = new Random();
+    }
 
     /// <summary>
     /// The suit of the player card
@@ -38,6 +47,7 @@ public class CardDeck
             return _cardList.Count;
         }
     }
+    public static Random Randomizer { get { return s_randomizer; } }
 
     public int PlayerScore
     {
@@ -69,6 +79,22 @@ public class CardDeck
                 //Add the card to the deck
                 _cardList.Add(card);
             }
+        }
+    }
+
+    public void ShuffleCards()
+    {
+        //For each card in the deck
+        for (int iCard = 0; iCard < _cardList.Count; iCard++)
+        {
+            //Chose a random position in the deck
+            int randPos = s_randomizer.Next(iCard, _cardList.Count);
+            
+            //Replace the current card with the card at the random position
+            Card crtCard = _cardList[iCard];
+            Card randCard = _cardList[randPos];
+            _cardList[randPos] = crtCard;
+            _cardList[iCard] = randCard;
         }
     }
 }
