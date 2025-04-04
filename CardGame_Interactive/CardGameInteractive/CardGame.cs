@@ -1,24 +1,29 @@
 namespace CardGameInteractive;
+
 /// <summary>
 /// Defines the card game that implements the game logic and holds the card deck
 /// </summary>
 public class CardGame
 {
     #region Fields
-    ///Represents the deck of cards the game is using
-    private CardDeck _cardDeck;
-    
     /// <summary>
-    /// The score of hte game
+    /// Represents the deck of cards the game is using
+    /// </summary>
+    private CardDeck _cardDeck;
+
+    /// <summary>
+    /// The score of the game
     /// </summary>
     private Score _score;
 
     /// <summary>
-    /// Last card that is played by the user
+    /// The last card played by the user
     /// </summary>
     private Card _playerCard;
-    
-    ///The last card played by the house
+
+    /// <summary>
+    /// The last card player by the house
+    /// </summary>
     private Card _houseCard;
 
     #endregion
@@ -35,7 +40,7 @@ public class CardGame
         _houseCard = null;
     }
     #endregion
-    
+
     #region Properties
 
     public Score Score
@@ -62,7 +67,7 @@ public class CardGame
     {
         get
         {
-            return _houseCard; 
+            return _houseCard;
         }
     }
 
@@ -70,7 +75,6 @@ public class CardGame
     {
         get
         {
-            //TODO: Add card count method to _cardDeck
             return _cardDeck.CardCount < 2;
         }
     }
@@ -79,8 +83,7 @@ public class CardGame
     {
         get
         {
-            //TODO: Add PlayerScore and HouseScore to _score
-            return this.IsOver && (_score.PlayerScore > _score.HouseScore); //When using a property, use this.property
+            return this.IsOver && (_score.PlayerScore > _score.HouseScore);
         }
     }
 
@@ -88,9 +91,10 @@ public class CardGame
     {
         get
         {
-            this.IsOver && (_score.HouseScore > _score.PlayerScore);
+            return this.IsOver && (_score.HouseScore > _score.PlayerScore);
         }
     }
+
     #endregion
     
     #region Methods
@@ -99,71 +103,69 @@ public class CardGame
     /// </summary>
     public void Play()
     {
-        //TODO: Implement play()
+        //TODO: Implement Play
     }
+    
     /// <summary>
-    /// Plays a round of the game
+    /// Play a round of the game
     /// </summary>
-    ///<returns>
-    ///     +1: The user won a round
-    ///      0: There was a tie
-    ///     -1: The house won a round
+    /// <returns>
+    ///     +1: the user won the round
+    ///     0: there was tie
+    ///     -1: the house won the round
     /// </returns>
     private sbyte PlayRound()
     {
-       //Determine the card ranks for the player and house cards
-       byte houseRank = DetermineCardRank(_houseCard);
-       byte cardRank = DetermineCardRank(_playerCard);
-       
-       //Check which card has the higher rank to determine the winner
-       if (cardRank > houseRank)
-       {
-           //Player won the round
-           return 1;
-       }
-       else if (houseRank > cardRank)
-       {
-           //The house won the round
-           return -1;
-       }
-       else
-       {
-           //Tie
-           return 0;
-       }
+        //determine the card ranks for the player and house cards
+        byte cardRank = DetermineCardRank(_playerCard);
+        byte houseRank = DetermineCardRank(_houseCard);
+        
+        //check which card has the higer rank to determine the winner
+        if (cardRank > houseRank)
+        {
+            //the player won the round
+            return 1;
+        }
+        else if (houseRank > cardRank)
+        {
+            //the house won the round
+            return -1;
+        }
+        else
+        {
+            //there was a tie
+            return 0;
+        }
     }
-/// <summary>
-/// Deals the cards to the player and house when a new round starts
-/// </summary>
+
+    /// <summary>
+    /// Deals the cards to the player and house when a new round starts
+    /// </summary>
     private void DealCards()
     {
-        
     }
 
     private void SwitchCards()
     {
-        
     }
 
     /// <summary>
-    /// Determine the rank of tje card as used in the game. The Ace is the highest card
+    /// Determine the rank of the card as used in the game. The Ace is the higest hard
     /// </summary>
-    /// <returns></returns>
+    /// <returns>the rank of the card</returns>
     private byte DetermineCardRank(Card card)
     {
-        //Check if the card is an ace
-        byte cardRank = (card.Value == 1) ? (byte)14 : card.Value;
-        return cardRank;
+        return (card.Value == 1) ? (byte)14 : card.Value;;
     }
 
     private void ShowRoundResult()
     {
-        
     }
 
     private void ShowGameOver()
     {
-        
     }
+
     #endregion
+
 }

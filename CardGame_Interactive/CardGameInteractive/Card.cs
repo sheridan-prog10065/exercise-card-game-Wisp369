@@ -1,8 +1,9 @@
 using System.Diagnostics;
 
 namespace CardGameInteractive;
+
 /// <summary>
-/// Defines the card in a card game with it's values and suit
+/// Defines the card in a card game with its value and suit
 /// </summary>
 public class Card
 {
@@ -10,7 +11,7 @@ public class Card
     /// The value of the playing card
     /// </summary>
     private byte _value;
-    
+
     /// <summary>
     /// The suit of the player card
     /// </summary>
@@ -28,6 +29,14 @@ public class Card
         {
             return _value;
         }
+    }
+
+    public CardSuit Suit
+    {
+        get
+        {
+            return _suit;
+        }
         set
         {
             _suit = value;
@@ -40,39 +49,57 @@ public class Card
         {
             switch (_value)
             {
-                case 1: 
+                case 1:
                     return "Ace";
+                
                 case 13:
                     return "King";
+                
                 case 12:
                     return "Queen";
+                
                 case 11:
                     return "Jack";
+                
                 default:
-                    //Convert the numeric value into a string
+                    //Convert the numeric value into a string. We CANNOT cast integer to a string
                     return _value.ToString();
+                    
             }
         }
     }
 
-    public string SuitName
+    public string SuiteName
     {
         get
         {
-            switch (_suit)
+            switch(_suit)
             {
                 case CardSuit.Clubs:
-                    return "Club";
+                    return "Clubs";
+                
                 case CardSuit.Diamonds:
-                    return "Diamond";
+                    return "Diamonds";
+                
                 case CardSuit.Hearts:
-                    return "Heart";
+                    return "Hearts";
+                
                 case CardSuit.Spades:
-                    return "Spade";
+                    return "Spades";
+                
                 default:
-                    Debug.Assert(false, "Unknown suit value, cannot return suit name");
+                    Debug.Assert(false, "Unknown suit value. Cannot return suit name");
                     return _suit.ToString();
             }
         }
     }
 }
+
+
+
+
+
+
+
+
+

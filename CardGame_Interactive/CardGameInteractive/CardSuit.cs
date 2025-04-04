@@ -1,10 +1,11 @@
 namespace CardGameInteractive;
+
 /// <summary>
 /// Defines the types suits that cards have
 /// </summary>
 public enum CardSuit
 {
-    Diamonds,
+    Diamonds = 1,
     Clubs,
     Hearts,
     Spades
