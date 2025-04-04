@@ -1,3 +1,5 @@
+using System.Diagnostics;
+
 namespace CardGameInteractive;
 
 /// <summary>
@@ -144,6 +146,9 @@ public class CardGame
     /// </summary>
     public void DealCards()
     {
+        //Extract 2 cards form the deck and assign them to the player and the house
+        bool cardsDelt = _cardDeck.GetPairOfCards(out _playerCard, out _houseCard);
+        Debug.Assert(cardsDelt, "Cards could not be dealt. Check the game is not over");
     }
 
     public void SwitchCards()

@@ -97,4 +97,41 @@ public class CardDeck
             _cardList[iCard] = randCard;
         }
     }
+
+    /// <summary>
+    /// Extracts two random cards from the deck
+    /// </summary>
+    /// <param name="cardOne">First card output</param>
+    /// <param name="cardTwo">Second card outpup</param>
+    /// <returns>true if extraction is possible, false if there are no cards left</returns>
+    public bool GetPairOfCards(out Card cardOne, out Card cardTwo)
+    {
+        //Check that we have enough cards for the extraction
+        if (_cardList.Count >= 2)
+        {
+            //Extract the first card
+            int randPos = CardDeck.Randomizer.Next(0, _cardList.Count);
+
+            //Extract the second card
+            cardOne = _cardList[randPos];
+            
+            //Remove the card from the deck
+            _cardList.RemoveAt(randPos);
+            
+            //Extract the second card
+            randPos = CardDeck.Randomizer.Next(0, _cardList.Count);
+            cardTwo = _cardList[randPos];
+            _cardList.RemoveAt(randPos);
+            
+            //Indicate success
+            return true;
+        }
+        else
+        {
+            //There are not enough cards, the game must be over
+            cardOne = null;
+            cardTwo = null;
+            return false;
+        }
+    }
 }
