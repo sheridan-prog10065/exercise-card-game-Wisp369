@@ -1,5 +1,3 @@
-using Android.Icu.Text;
-
 namespace CardGameInteractive;
 /// <summary>
 /// Defines the card deck as a list of cards
