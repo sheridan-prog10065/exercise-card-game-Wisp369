@@ -134,4 +134,9 @@ public class CardDeck
             return false;
         }
     }
+
+    public void ExchangeCards(ref Card cardOne, ref Card cardTwo)
+    {
+        (cardOne, cardTwo) = (cardTwo, cardOne);
+    }
 }
